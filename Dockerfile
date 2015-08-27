@@ -1,6 +1,8 @@
-FROM alpine:3.2
+FROM debian:8
 MAINTAINER Lee Verberne <lee@blarg.org>
 
-RUN apk --update add socat && rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install -y \
+        socat \
+    && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/usr/bin/socat"]
